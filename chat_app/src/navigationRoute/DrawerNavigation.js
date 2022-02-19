@@ -10,6 +10,7 @@ import {
 } from '@react-navigation/native';
 import Svgs from './constants/Svgs';
 import Navigation from './component/Navigation';
+
 const drawerNavigation = createDrawerNavigator();
 
 const DrawerContent = props => {
@@ -31,28 +32,30 @@ const DrawerContent = props => {
 };
 
 const DrawerNavigation = () => {
-  <NavigationContainer>
-    <drawerNavigation.Navigator
-      screenOptions={{
-        swipeEnabled: true,
-      }}
-      drawerContent={props => {
-        return <DrawerContent props={props} />;
-      }}>
-      <drawerNavigation.Screen
-        name="DrawerHome"
-        component={Navigation}
-        options={({route}) => {
-          const routeName = getFocusedRouteNameFromRoute(route);
-          return {
-            swipeEnabled: routeName !== 'Login' && routeName !== undefined,
-            drawerLabel: 'Home',
-            headerShown: false,
-          };
+  return (
+    <NavigationContainer>
+      <drawerNavigation.Navigator
+        screenOptions={{
+          swipeEnabled: true,
         }}
-      />
-    </drawerNavigation.Navigator>
-  </NavigationContainer>;
+        drawerContent={props => {
+          return <DrawerContent props={props} />;
+        }}>
+        <drawerNavigation.Screen
+          name="DrawerHome"
+          component={Navigation}
+          options={({route}) => {
+            const routeName = getFocusedRouteNameFromRoute(route);
+            return {
+              swipeEnabled: routeName !== 'Login' && routeName !== undefined,
+              drawerLabel: 'Home',
+              headerShown: false,
+            };
+          }}
+        />
+      </drawerNavigation.Navigator>
+    </NavigationContainer>
+  );
 };
 
 export default DrawerNavigation;

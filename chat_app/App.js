@@ -5,7 +5,8 @@ import io from 'socket.io-client';
 import {Provider} from 'react-redux';
 import {applyMiddleware, createStore} from 'redux';
 import thunk from 'redux-thunk';
-import DrawerNavigation from './src/navigationRoute/DrawerNavigation'
+import DrawerNavigation from './src/navigationRoute/DrawerNavigation';
+
 // const store = createStore(rootReducer, applyMiddleware(thunk));
 const App = () => {
   return <DrawerNavigation />;
