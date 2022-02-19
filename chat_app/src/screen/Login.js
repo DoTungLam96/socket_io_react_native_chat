@@ -53,7 +53,7 @@ const Login = () => {
               }),
               left: LogoAnime.interpolate({
                 inputRange: [0, 1],
-                outputRange: [-10, 0],
+                outputRange: [-50, 0],
               }),
             },
             styles.logoTop,
