@@ -1,15 +1,9 @@
-import React, {useState, useEffect, useRef} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  StyleSheet,
-  Animated,
-} from 'react-native';
 import {Spinner} from 'native-base';
+import React, {useEffect, useRef} from 'react';
+import {Animated, Image, StyleSheet, Text, View} from 'react-native';
+import NavigationService from '../../navigationRoute/component/NavigationServices';
 
-const Login = () => {
+const Intro = () => {
   const LogoAnime = useRef(new Animated.Value(0)).current;
   const LandingAnime = useRef(new Animated.Value(0)).current;
   const SpinnerAnime = useRef(new Animated.Value(0)).current;
@@ -35,7 +29,7 @@ const Login = () => {
           // } else {
           //   Actions.replace('auth');
           // }
-          console.log('animated...........');
+          NavigationService.navigate('Login', undefined);
         });
       }),
     ]).start();
@@ -58,11 +52,11 @@ const Login = () => {
             },
             styles.logoTop,
           ]}>
-          <Image source={require('../../images/Logo.png')} />
+          <Image source={require('../../../images/Logo.png')} />
         </Animated.View>
 
         <Animated.View style={[{opacity: LandingAnime}, styles.Landing]}>
-          <Image source={require('../../images/Landing.png')} />
+          <Image source={require('../../../images/Landing.png')} />
         </Animated.View>
 
         <Animated.View
@@ -82,13 +76,31 @@ const Login = () => {
     </View>
   );
 };
-export default Login;
+export default Intro;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     position: 'relative',
     backgroundColor: '#ffffff',
+  },
+  card: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 40,
+    width: 350,
+    marginLeft: 20,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 15,
+    borderWidth: 0.5,
+    borderColor: '#FFFFFF',
+    shadowOffset: {
+      height: 1,
+      width: 1,
+    },
+    shadowColor: '#000000',
+    shadowOpacity: 0.08,
+    elevation: 3,
   },
   content: {
     flex: 1,

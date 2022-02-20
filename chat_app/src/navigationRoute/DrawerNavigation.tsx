@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Image, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -10,6 +10,7 @@ import {
 } from '@react-navigation/native';
 import Svgs from './constants/Svgs';
 import Navigation from './component/Navigation';
+import {setNavigator} from './component/NavigationServices';
 
 const drawerNavigation = createDrawerNavigator();
 
@@ -31,9 +32,9 @@ const DrawerContent = props => {
   );
 };
 
-const DrawerNavigation = () => {
+const DrawerNavigation = (): React.ReactElement => {
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={setNavigator}>
       <drawerNavigation.Navigator
         screenOptions={{
           swipeEnabled: true,
