@@ -1,1 +1,1 @@
-export const Login = 'Login/save_account';
+export const LOGIN = 'Login/save_account';

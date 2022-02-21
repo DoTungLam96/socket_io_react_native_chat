@@ -1,5 +1,6 @@
 package com.chat_app.modules;
 
+import com.chat_app.widgets.ProgressDialog;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;

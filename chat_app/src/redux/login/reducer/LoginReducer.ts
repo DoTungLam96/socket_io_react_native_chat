@@ -10,7 +10,7 @@ const initState: User = {
 
 const LoginReducer = (state = initState, action: ActionType): User => {
   switch (action.type) {
-    case Actions.Login: {
+    case Actions.LOGIN: {
       return {
         ...state,
         name: action?.data?.name,

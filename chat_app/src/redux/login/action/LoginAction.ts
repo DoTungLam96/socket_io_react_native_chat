@@ -3,7 +3,7 @@ import {ActionType} from '../../RootReducer';
 import * as Actions from './ActionKey';
 export const Login = (user: User): ActionType => {
   return {
-    type: Actions.Login,
+    type: Actions.LOGIN,
     data: {user},
   };
 };
