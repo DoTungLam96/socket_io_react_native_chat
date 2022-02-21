@@ -1,5 +1,4 @@
-import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -8,9 +7,11 @@ import {
   getFocusedRouteNameFromRoute,
   NavigationContainer,
 } from '@react-navigation/native';
-import Svgs from './constants/Svgs';
+import React from 'react';
+import {Text, TouchableOpacity, View} from 'react-native';
 import Navigation from './component/Navigation';
 import {setNavigator} from './component/NavigationServices';
+import Svgs from './constants/Svgs';
 
 const drawerNavigation = createDrawerNavigator();
 
@@ -18,12 +19,21 @@ const DrawerContent = props => {
   return (
     <DrawerContentScrollView {...props}>
       <View style={{padding: 8}}>
-        <TouchableOpacity style={{flexDirection: 'row'}}>
+        <TouchableOpacity style={{flexDirection: 'row', marginTop: 16}}>
           <Svgs.icHome width={22} height={22} />
-          <Text>Trang chủ</Text>
+          <Text
+            style={{
+              fontSize: 14,
+              color: '#000',
+              fontWeight: 'bold',
+              marginLeft: 16,
+              paddingTop: 2,
+            }}>
+            Trang chủ
+          </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{flexDirection: 'row', marginTop: 10}}>
+        <TouchableOpacity style={{flexDirection: 'row', marginTop: 24}}>
           <Svgs.icChat width={22} height={22} />
           <Text>Trò chuyện</Text>
         </TouchableOpacity>
@@ -47,6 +57,7 @@ const DrawerNavigation = (): React.ReactElement => {
           component={Navigation}
           options={({route}) => {
             const routeName = getFocusedRouteNameFromRoute(route);
+            console.log('routeName', routeName);
             return {
               swipeEnabled: routeName !== 'Login' && routeName !== undefined,
               drawerLabel: 'Home',

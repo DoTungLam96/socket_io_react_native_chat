@@ -29,7 +29,7 @@ const Intro = () => {
           // } else {
           //   Actions.replace('auth');
           // }
-          NavigationService.navigate('Login', undefined);
+          NavigationService.navigate('Home', undefined);
         });
       }),
     ]).start();

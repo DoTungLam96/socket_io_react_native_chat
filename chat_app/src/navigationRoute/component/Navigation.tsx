@@ -24,11 +24,22 @@ const Navigation = (): React.ReactElement => {
       <Stack.Screen
         options={{
           headerTitleAlign: 'center',
+          headerTintColor: '#ff548e',
           headerLeft: () => (
             <TouchableOpacity onPress={() => navigation.openDrawer()}>
               <Image
                 style={{width: 24, height: 24}}
                 source={require('../../../images/menu.png')}
+              />
+            </TouchableOpacity>
+          ),
+          headerRight: () => (
+            <TouchableOpacity
+              style={{paddingTop: 5}}
+              onPress={() => console.log('close_drawer')}>
+              <Image
+                style={{width: 24, height: 24}}
+                source={require('../../../images/cancel.png')}
               />
             </TouchableOpacity>
           ),
