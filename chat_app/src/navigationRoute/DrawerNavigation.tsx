@@ -35,7 +35,16 @@ const DrawerContent = props => {
 
         <TouchableOpacity style={{flexDirection: 'row', marginTop: 24}}>
           <Svgs.icChat width={22} height={22} />
-          <Text>Trò chuyện</Text>
+          <Text
+            style={{
+              fontSize: 14,
+              color: '#000',
+              fontWeight: 'bold',
+              marginLeft: 16,
+              paddingTop: 2,
+            }}>
+            Trò chuyện
+          </Text>
         </TouchableOpacity>
       </View>
     </DrawerContentScrollView>

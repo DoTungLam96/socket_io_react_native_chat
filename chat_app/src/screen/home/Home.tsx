@@ -10,21 +10,26 @@ import {
   FlatList,
 } from 'react-native';
 
+import {Card} from 'react-native-paper';
+
 const DATA_FAKE: any[] = [
   {
     id: '001',
     name: 'Elly Beli',
     avatar: 'https://i.ibb.co/MSF7QF1/avatar-b.png',
+    message: 'Hello',
   },
   {
     id: '002',
     name: 'Johny March',
     avatar: 'https://i.ibb.co/ChHx37k/avatar-c.png',
+    message: 'How are you? bro',
   },
   {
     id: '003',
     name: 'Jenny Pham',
     avatar: 'https://i.ibb.co/YdkZNJN/avatar-a.png',
+    message: 'Hi, everyone',
   },
 ];
 
@@ -53,37 +58,55 @@ const Home = () => {
                   backgroundColor: '#fff',
                   borderRadius: 8,
                   flex: 1,
-                  height: 45,
+                  paddingVertical: 8,
                   justifyContent: 'center',
-                  paddingLeft: 16,
+                  paddingHorizontal: 16,
                 }}>
-                <Text>{item?.name}</Text>
+                <Text
+                  style={{
+                    color: '#ed6faf',
+                    marginBottom: 6,
+                    fontStyle: 'italic',
+                    fontWeight: 'bold',
+                    fontSize: 12,
+                  }}>
+                  {item?.name}
+                </Text>
+                <Text style={{color: '#000'}}>{item?.message}</Text>
               </View>
             </View>
           )}
         />
       </View>
 
-      <View style={styles.card}>
+      <Card elevation={4} style={styles.card}>
         <View
           style={{
-            height: 50,
-            borderRadius: 10,
-            borderWidth: 0.5,
-            marginRight: 16,
+            padding: 16,
+            flexDirection: 'row',
             flex: 1,
-            paddingLeft: 8,
-            borderColor: '#eda8cb',
+            width: '100%',
           }}>
-          <TextInput placeholder="Type something" />
+          <View
+            style={{
+              height: 50,
+              borderRadius: 10,
+              borderWidth: 0.8,
+              marginRight: 16,
+              flex: 1,
+              paddingLeft: 8,
+              borderColor: '#eda8cb',
+            }}>
+            <TextInput placeholder="Type something" />
+          </View>
+          <TouchableOpacity style={{justifyContent: 'center', marginTop: -4}}>
+            <Image
+              source={require('../../../images/add.png')}
+              style={{width: 30, height: 30}}
+            />
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity>
-          <Image
-            source={require('../../../images/add.png')}
-            style={{width: 30, height: 30}}
-          />
-        </TouchableOpacity>
-      </View>
+      </Card>
     </View>
   );
 };
@@ -98,15 +121,15 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    flexDirection: 'row',
-    padding: 16,
-    shadowOffset: {
-      width: 1,
-      height: 1,
-    },
-    shadowRadius: 2,
-    shadowOpacity: 0.3,
-    shadowColor: '#000',
-    elevation: 2,
+    width: '100%',
+
+    // shadowOffset: {
+    //   width: 1,
+    //   height: 1,
+    // },
+    // shadowRadius: 2,
+    // // shadowOpacity: 0.3,
+    // shadowColor: '#000',
+    // elevation: 2,
   },
 });

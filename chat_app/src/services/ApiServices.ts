@@ -10,6 +10,10 @@ interface RequestOption {
   message?: string;
 }
 
+export const BASE_URL = '172.16.103.155';
+
+export const TOKEN = '';
+
 export default class ApiService {
   baseUrl = '';
   headers = {};
@@ -42,6 +46,11 @@ export default class ApiService {
     if (this.requestTokens[url]) {
       this.requestTokens[url].cancel();
     }
+
+    headers = {
+      ...headers,
+      'x-auth-token': TOKEN,
+    };
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source();
     const defaultOption: RequestOption = {
