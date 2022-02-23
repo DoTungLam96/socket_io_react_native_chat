@@ -3,7 +3,7 @@ import {ActionType} from 'src/redux/RootReducer';
 
 export type HomeModel = {
   id?: string;
-  name?: string;
+  name?: any;
   token?: string;
   message?: string;
   error?: string;
@@ -29,6 +29,12 @@ const HomeReducer = (state = initState, action: ActionType): HomeModel => {
     }
 
     case Actions.JOIN_ROOM: {
+      return {
+        ...state,
+        room: action?.data?.room,
+      };
+    }
+    case Actions.SEND_MESSAGE: {
       return {
         ...state,
         room: action?.data?.room,

@@ -24,28 +24,28 @@ export const LoadMessageDispatch =
   };
 
 export const JoinChatRoomDispatch =
-  (roomId: string, room: any) => async dispatch => {
-    const currentUser = roomId.trim().toLowerCase();
+  (name: any, room: any) => async dispatch => {
+    const currentUser = name.trim().toLowerCase();
 
-    socket.emit('join', {roomId, room}, err => {
+    socket.emit('join', {name, room}, err => {
       console.log('JoinChatRoomDispatch', err);
     });
 
     socket.on('message', message => {
-      if (currentUser != message[0]?.chatUser) {
-        dispatch(JoinChatroom(roomId, room));
+      if (currentUser !== message[0]?.chatUser) {
+        dispatch(JoinChatroom(name, room));
       }
       const {msg, type} = message[0];
       if (type !== 'bot' && msg !== '') {
         const homeApi = new HomeApi();
         homeApi.joinChatRoom({}).then(data => {
-          dispatch(JoinChatroom(roomId, data));
+          dispatch(JoinChatroom(name, data));
         });
       }
     });
   };
 
-export const sendMessage =
+export const sendMessageDispatch =
   ({name, msg, date, room}) =>
   async dispatch => {
     socket.emit('sendMessage', {name, msg, date, room}, callback => {});

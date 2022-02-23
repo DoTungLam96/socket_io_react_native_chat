@@ -11,12 +11,31 @@ export const LoadMessage = (token: string, message: string): ActionType => {
   };
 };
 
-export const JoinChatroom = (roomId: string, room: any): ActionType => {
+export const JoinChatroom = (name: any, room: any): ActionType => {
   return {
     data: {
-      roomId: roomId,
+      name: name,
       room: room,
     },
     type: Actions.JOIN_ROOM,
+  };
+};
+
+export const SendMessage = (
+  name: any,
+  msg: any,
+  date: any,
+  room: any,
+  token: any,
+): ActionType => {
+  return {
+    data: {
+      name: name,
+      room: room,
+      msg: msg,
+      date: date,
+      token: token,
+    },
+    type: Actions.SEND_MESSAGE,
   };
 };
