@@ -1,15 +1,26 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react-hooks/exhaustive-deps */
 import {Button, Form, Input, Item, Text, View} from 'native-base';
-import React, {useEffect, useRef} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {Animated, Image, ImageBackground, StyleSheet} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Fontiso from 'react-native-vector-icons/Fontisto';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {useDispatch} from 'react-redux';
+import {loginDispatch} from 'src/redux/login/thunk/LoginThunk';
 import NavigationService from '../../navigationRoute/component/NavigationServices';
+
+export interface BodyLogin {
+  email?: string;
+  password?: string;
+}
 
 const Login = (): React.ReactElement => {
   const logoAnime = useRef(new Animated.Value(0)).current;
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     Animated.parallel([
@@ -21,6 +32,14 @@ const Login = (): React.ReactElement => {
       }).start(),
     ]);
   }, []);
+
+  const submitUser = useCallback(() => {
+    if (username === '' || password === '') {
+      alert('Fill all credentials.');
+    } else {
+      dispatch(loginDispatch(username, password));
+    }
+  }, [username, password]);
 
   return (
     <View style={styles.container}>
@@ -73,11 +92,19 @@ const Login = (): React.ReactElement => {
                   <Form style={styles.mainForm}>
                     <Item style={styles.formItems}>
                       <Fontiso name="email" style={styles.Icon} />
-                      <Input placeholder="E-mail" style={styles.Input} />
+                      <Input
+                        placeholder="E-mail"
+                        style={styles.Input}
+                        onChangeText={text => setUsername(text)}
+                      />
                     </Item>
                     <Item style={styles.formItems}>
                       <MaterialIcons name="security" style={styles.Icon} />
-                      <Input placeholder="Password" style={styles.Input} />
+                      <Input
+                        placeholder="Password"
+                        style={styles.Input}
+                        onChangeText={text => setPassword(text)}
+                      />
                     </Item>
                   </Form>
                 </View>
@@ -87,7 +114,7 @@ const Login = (): React.ReactElement => {
                 <Button
                   block
                   style={styles.btnGrp}
-                  onPress={() => console.log('login')}>
+                  onPress={() => submitUser()}>
                   <Text style={styles.btnText}>Login</Text>
                 </Button>
               </Animated.View>

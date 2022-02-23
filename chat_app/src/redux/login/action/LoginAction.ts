@@ -1,9 +1,8 @@
-import {User} from '../../../model/Login';
 import {ActionType} from '../../RootReducer';
 import * as Actions from './ActionKey';
-export const Login = (user: User): ActionType => {
+export const Login = (dataLogin: any): ActionType => {
   return {
     type: Actions.LOGIN,
-    data: {user},
+    data: {dataLogin},
   };
 };
