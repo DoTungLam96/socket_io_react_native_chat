@@ -1,15 +1,19 @@
 /* eslint-disable react-native/no-inline-styles */
 import {Button, Form, Input, Item, Text, View} from 'native-base';
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Animated, Image, ImageBackground, StyleSheet} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Fontiso from 'react-native-vector-icons/Fontisto';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {useDispatch} from 'react-redux';
+import {RegisterThunk} from 'src/redux/register/RegisterThunk';
 import NavigationService from '../../navigationRoute/component/NavigationServices';
 
 const Register = (): React.ReactElement => {
   const logoAnime = useRef(new Animated.Value(0)).current;
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     Animated.parallel([
@@ -21,6 +25,15 @@ const Register = (): React.ReactElement => {
       }).start(),
     ]);
   }, []);
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [cpassword, setCpassword] = useState('');
+  const [name, setName] = useState('');
+
+  const registerAccount = () => {
+    dispatch(RegisterThunk(email, password, name, cpassword));
+  };
 
   return (
     <View style={styles.container}>
@@ -74,21 +87,34 @@ const Register = (): React.ReactElement => {
                   <Form style={styles.mainForm}>
                     <Item style={styles.formItems}>
                       <Entypo name="user" style={styles.Icon} />
-                      <Input placeholder="Full name" style={styles.Input} />
+                      <Input
+                        placeholder="Full name"
+                        style={styles.Input}
+                        onChangeText={txt => setName(txt)}
+                      />
                     </Item>
                     <Item style={styles.formItems}>
                       <Fontiso name="email" style={styles.Icon} />
-                      <Input placeholder="E-mail" style={styles.Input} />
+                      <Input
+                        placeholder="E-mail"
+                        style={styles.Input}
+                        onChangeText={txt => setEmail(txt)}
+                      />
                     </Item>
                     <Item style={styles.formItems}>
                       <MaterialIcons name="security" style={styles.Icon} />
-                      <Input placeholder="Password" style={styles.Input} />
+                      <Input
+                        placeholder="Password"
+                        style={styles.Input}
+                        onChangeText={txt => setPassword(txt)}
+                      />
                     </Item>
                     <Item style={styles.formItems}>
                       <MaterialIcons name="security" style={styles.Icon} />
                       <Input
                         placeholder="Confirm Password"
                         style={styles.Input}
+                        onChangeText={txt => setCpassword(txt)}
                       />
                     </Item>
                   </Form>
@@ -96,7 +122,10 @@ const Register = (): React.ReactElement => {
               </Animated.View>
 
               <Animated.View style={[{opacity: logoAnime}]}>
-                <Button block style={styles.btnGrp}>
+                <Button
+                  block
+                  style={styles.btnGrp}
+                  onPress={() => registerAccount()}>
                   <Text style={styles.btnText}>Register</Text>
                 </Button>
               </Animated.View>
@@ -106,7 +135,7 @@ const Register = (): React.ReactElement => {
                 <TouchableOpacity
                   style={[styles.do]}
                   onPress={() => {
-                    NavigationService.goBack();
+                    NavigationService.navigate('Login', undefined);
                   }}>
                   <Text style={[styles.do, {color: '#29AFA0', marginLeft: 15}]}>
                     Login

@@ -10,7 +10,7 @@ interface RequestOption {
   message?: string;
 }
 
-export const BASE_URL = '172.16.103.155';
+export const BASE_URL = 'http://192.168.31.238:9000';
 
 export const TOKEN = '';
 
@@ -75,9 +75,7 @@ export default class ApiService {
 
     if (data) {
       Object.assign(options, {
-        data: JSON.stringify({
-          data,
-        }),
+        data: JSON.stringify(data),
       });
     }
 

@@ -20,7 +20,7 @@ export type RootStackParamList = {
 const Navigation = (): React.ReactElement => {
   const navigation = useNavigation();
   return (
-    <Stack.Navigator initialRouteName="Intro">
+    <Stack.Navigator initialRouteName="Register">
       <Stack.Screen
         options={{
           headerTitleAlign: 'center',

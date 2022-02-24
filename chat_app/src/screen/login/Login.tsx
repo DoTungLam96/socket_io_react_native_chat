@@ -6,8 +6,10 @@ import {Animated, Image, ImageBackground, StyleSheet} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Fontiso from 'react-native-vector-icons/Fontisto';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {loginDispatch} from 'src/redux/login/thunk/LoginThunk';
+import {RegisterRespond} from 'src/redux/register/RegisterAction';
+import {RootStateType} from 'src/redux/RootReducer';
 import NavigationService from '../../navigationRoute/component/NavigationServices';
 
 export interface BodyLogin {
@@ -21,6 +23,18 @@ const Login = (): React.ReactElement => {
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
+
+  const userRegisterRespond = useSelector((state: RootStateType) => {
+    return {
+      id: state.RegisterReducer?.id,
+      name: state.RegisterReducer?.name,
+      email: state.RegisterReducer?.email,
+      token: state.RegisterReducer?.token,
+    };
+  });
+  useEffect(() => {
+    console.log('userRegisterRespond_login', userRegisterRespond);
+  }, [userRegisterRespond]);
 
   useEffect(() => {
     Animated.parallel([

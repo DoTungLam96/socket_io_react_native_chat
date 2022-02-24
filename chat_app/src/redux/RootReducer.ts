@@ -1,10 +1,14 @@
 import {combineReducers} from 'redux';
 import {HomeReducer} from './home/reducer/HomeReducer';
 import {LoginReducer} from './login/reducer/LoginReducer';
-
+import {RegisterReducer} from './register/RegisterReducer';
+import {RegisterRespond} from 'src/redux/register/RegisterAction';
 const reducerList = {
-  LoginReducer: LoginReducer,
-  HomeReducer: HomeReducer,
+  RegisterReducer,
+};
+
+export type RootStateType = {
+  RegisterReducer: RegisterRespond;
 };
 
 export type ActionType = {
